@@ -1,0 +1,57 @@
+/* app/styles/layout.module.css */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: var(--background);
+  border-bottom: 1px solid var(--accent);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.navbar h2 {
+  font-family: var(--font-heading);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--gold); /* Use gold for a premium title */
+  margin: 0;
+}
+
+.navLinks {
+  display: flex;
+  gap: 20px;
+}
+
+.navLinks a {
+  font-size: 18px;
+  color: var(--foreground);
+  text-decoration: none;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+  padding: 8px 12px;
+  border-radius: 4px;
+}
+
+.navLinks a:hover {
+  background-color: var(--accent);
+  color: var(--gold); /* Gold hover for links */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 10px 20px;
+  }
+
+  .navLinks {
+    margin-top: 10px;
+  }
+
+  .navLinks a {
+    font-size: 16px;
+  }
+}

@@ -1,0 +1,63 @@
+/* app/styles/products.module.css */
+
+.productsContainer {
+  max-width: 1200px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.productsTitle {
+  font-family: var(--font-heading);
+  font-size: 42px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: var(--gold); /* Gold accent for title */
+}
+
+.productList {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 0;
+}
+
+.productItem {
+  background-color: #1e1e1e;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  overflow: hidden;
+  width: 300px;
+  transition: transform 0.3s;
+}
+
+.productItem:hover {
+  transform: scale(1.02);
+}
+
+.productLink {
+  text-decoration: none;
+  color: var(--foreground);
+  display: block;
+  padding: 10px;
+}
+
+.productImage {
+  border-bottom: 1px solid var(--accent);
+}
+
+.productName {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px 0 5px;
+}
+
+.productPrice {
+  font-size: 18px;
+  color: var(--gold);
+  margin-bottom: 10px;
+}

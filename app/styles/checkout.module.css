@@ -1,0 +1,61 @@
+/* app/styles/checkout.module.css */
+
+.checkoutContainer {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: var(--background);
+  color: var(--foreground);
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+}
+
+.checkoutHeading {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: var(--gold);
+  text-align: center;
+}
+
+.checkoutForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formLabel {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.formInput {
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid var(--accent);
+  border-radius: 5px;
+  background-color: #1e1e1e;
+  color: var(--foreground);
+}
+
+.checkoutButton {
+  padding: 12px;
+  font-size: 18px;
+  background-color: var(--gold);
+  color: var(--background);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 20px;
+}
+
+.checkoutButton:hover {
+  background-color: #c49f2c; /* Slightly darker gold */
+}
