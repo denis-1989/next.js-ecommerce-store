@@ -14,8 +14,8 @@ export default function RootLayout({ children }) {
           <nav className={styles.navLinks}>
             <Link href="/">Home</Link>
             <Link href="/products">Products</Link>
-            <Link href="/checkout">Checkout</Link>
             <Link href="/cart">Cart 🛒</Link>
+            <Link href="/checkout">Checkout</Link>
           </nav>
         </header>
         <main>{children}</main>

@@ -35,7 +35,7 @@ export default function ProductsPage() {
       <h1 className={styles.productsTitle}>Products</h1>
       <ul className={styles.productList}>
         {products.map((product) => (
-          <li key={product.id} className={styles.productItem}>
+          <li key={`product-${product.id}`} className={styles.productItem}>
             <Link
               href={`/products/${product.id}`}
               data-test-id={`product-${product.id}`}

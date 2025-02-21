@@ -1,54 +1,34 @@
-'use client';
+import ProductItem from './Productitem';
 
-import { useRouter } from 'next/navigation';
-import { use, useEffect, useState } from 'react';
+const sampleProducts = [
+  {
+    id: '1',
+    name: 'Rolex Submariner',
+    price: 12500,
+    image: '/images/rolex-submariner.webp',
+  },
+  {
+    id: '2',
+    name: 'Omega Speedmaster',
+    price: 8500,
+    image: '/images/omega-speedmaster.webp',
+  },
+  {
+    id: '3',
+    name: 'Audemars Piguet Royal Oak',
+    price: 30000,
+    image: '/images/audemars-piguet-royal-oak.webp',
+  },
+  {
+    id: '4',
+    name: 'Patek Philippe Nautilus',
+    price: 40000,
+    image: '/images/patek-philippe-nautilus.webp',
+  },
+];
 
-export default function ProductPage({ params: paramsPromise }) {
-  const router = useRouter();
-  const params = use(paramsPromise); // Unwrapping the params promise
-  const productId = params.id; // Now it's safe to access
-
-  const [product, setProduct] = useState(null);
-
-  useEffect(() => {
-    const sampleProducts = [
-      { id: '1', name: 'Rolex Submariner', price: 10000 },
-      { id: '2', name: 'Omega Speedmaster', price: 8000 },
-      { id: '3', name: 'Audemars Piguet Royal Oak', price: 15000 },
-      { id: '4', name: 'Patek Philippe Nautilus', price: 20000 },
-    ];
-    const foundProduct = sampleProducts.find((p) => p.id === productId);
-    setProduct(foundProduct);
-  }, [productId]);
-
-  const handleAddToCart = () => {
-    if (!product) return;
-
-    const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-    const existingProduct = cart.find((item) => item.id === product.id);
-
-    if (existingProduct) {
-      existingProduct.quantity += 1;
-    } else {
-      cart.push({ ...product, quantity: 1 });
-    }
-
-    localStorage.setItem('cart', JSON.stringify(cart));
-
-    alert(`${product.name} added to cart!`);
-    router.push('/cart');
-  };
-
-  if (!product) return <p>Loading...</p>;
-
-  return (
-    <div>
-      <h1>{product.name}</h1>
-      <p>Price: ${product.price}</p>
-      <button onClick={handleAddToCart} data-test-id="product-add-to-cart">
-        Add to Cart
-      </button>
-    </div>
-  );
+export default async function ProductPage({ params }) {
+  const productId = (await params).id;
+  console.log(productId);
+  return <ProductItem sampleProducts={sampleProducts} productId={productId} />;
 }
