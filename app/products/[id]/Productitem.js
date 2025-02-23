@@ -67,19 +67,8 @@ export default function ProductItem(props) {
         />
 
         <button
-          onClick={() => {
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-            const existingProduct = cart.find(
-              (item) => item.id === props.productId,
-            );
-
-            if (existingProduct) {
-              existingProduct.quantity = quantity;
-            } else {
-              cart.push({ ...product, quantity });
-            }
-
-            localStorage.setItem('cart', JSON.stringify(cart));
+          onClick={async () => {
+            await addOrUpdateCartItem(props.productId, quantity);
             alert(`${product.name} added to cart!`);
             router.push('/cart');
           }}
