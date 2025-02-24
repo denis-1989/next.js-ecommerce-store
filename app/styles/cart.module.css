@@ -40,6 +40,12 @@
   font-weight: bold;
 }
 
+.cartPrice {
+  font-size: 16px;
+  color: var(--gold);
+  font-weight: bold;
+}
+
 .cartSubtotal {
   font-size: 16px;
   color: var(--gold);

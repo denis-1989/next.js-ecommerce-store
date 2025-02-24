@@ -18,7 +18,7 @@ export default function ProductItem(props) {
       (p) => p.id === props.productId,
     );
     setProduct(foundProduct);
-  }, [props.productId]);
+  }, [props.productId, props.sampleProducts]);
 
   // const handleAddToCart = () => {
   //   if (!product) {

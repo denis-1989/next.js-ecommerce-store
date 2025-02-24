@@ -1,93 +1,72 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import styles from '../styles/cart.module.css';
 
-export default function CartItem() {
-  const [cart, setCart] = useState([]);
-  const router = useRouter();
+export default function CartItem({ cart }) {
+  // Step 1: State for Updated Cart
+  const [updatedCartState, setUpdatedCartState] = useState(cart);
 
+  // Step 2: useEffect to Update Cookie
   useEffect(() => {
-    const cartData = JSON.parse(localStorage.getItem('cart')) || [];
-    // Filter out any null items
-    setCart(cartData.filter((item) => item !== null));
-  }, []);
+    // Update the cookie whenever the cart state changes
+    document.cookie = `cart=${encodeURIComponent(
+      JSON.stringify(
+        updatedCartState.map((item) => ({
+          id: item.id,
+          quantity: item.quantity,
+        })),
+      ),
+    )}; path=/`;
+  }, [updatedCartState]);
 
+  // Step 3: Remove an item from the cart
   const handleRemove = (productId) => {
-    const updatedCart = cart.filter((item) => item.id !== productId);
-    setCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
+    // Filter out the product to be removed
+    const newCart = updatedCartState.filter((item) => item.id !== productId);
+    setUpdatedCartState(newCart);
   };
 
-  const handleQuantityChange = (productId, newQuantity) => {
-    if (newQuantity < 1) return; // Prevent negative quantity
-    const updatedCart = cart.map((item) =>
-      item.id === productId ? { ...item, quantity: newQuantity } : item,
-    );
-    setCart(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-  };
+  // Step 4: Calculate the total price
+  const totalPrice = updatedCartState.reduce(
+    (total, item) => total + (item.price || 0) * (item.quantity || 0),
+    0,
+  );
 
-  // Filter out null items before reducing
-  const totalPrice = cart
-    .filter((item) => item !== null)
-    .reduce(
-      (total, item) => total + (item.price || 0) * (item.quantity || 0),
-      0,
-    );
-
-  const handleCheckout = () => {
-    router.push('/checkout');
-  };
-
+  // Step 5: Display the cart items
   return (
     <div className={styles.cartContainer}>
       <h1 className={styles.cartTitle}>Your Cart</h1>
-      {cart.length === 0 ? (
+      {updatedCartState.length === 0 ? (
         <p>Your cart is empty.</p>
       ) : (
         <div>
-          {cart
-            .filter((item) => item !== null)
-            .map((item) => (
-              <div
-                key={`item-${item.id}`}
-                className={styles.cartItem}
-                data-test-id={`cart-product-${item.id}`}
+          {updatedCartState.map((item) => (
+            <div
+              key={`item-${item.id}`}
+              className={styles.cartItem}
+              data-test-id={`cart-product-${item.id}`}
+            >
+              <span className={styles.cartProductName}>{item.name}</span>
+              <span className={styles.cartQuantity}>
+                Quantity: {item.quantity}
+              </span>
+              <span className={styles.cartPrice}>Price: ${item.price}</span>
+              <span className={styles.cartSubtotal}>
+                Subtotal: ${item.price * item.quantity}
+              </span>
+              <button
+                onClick={() => handleRemove(item.id)}
+                className={styles.removeButton}
+                data-test-id={`cart-product-remove-${item.id}`}
               >
-                <span className={styles.cartProductName}>{item.name}</span>
-                <span
-                  className={styles.cartQuantity}
-                  data-test-id={`cart-product-quantity-${item.id}`}
-                >
-                  {item.quantity}
-                </span>
-                <span
-                  className={styles.cartSubtotal}
-                  data-test-id={`cart-product-subtotal-${item.id}`}
-                >
-                  ${item.price * item.quantity}
-                </span>
-                <button
-                  onClick={() => handleRemove(item.id)}
-                  className={styles.removeButton}
-                  data-test-id={`cart-product-remove-${item.id}`}
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
+                Remove
+              </button>
+            </div>
+          ))}
           <h2 className={styles.cartTotal} data-test-id="cart-total">
-            {totalPrice}
+            Total: ${totalPrice}
           </h2>
-          <button
-            onClick={handleCheckout}
-            className={styles.checkoutButton}
-            data-test-id="cart-checkout"
-          >
-            Proceed to Checkout
-          </button>
         </div>
       )}
     </div>
