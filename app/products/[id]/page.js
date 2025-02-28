@@ -1,3 +1,7 @@
+import {
+  getProductInsecure,
+  getProductsInsecure,
+} from '../../../database/products';
 import ProductItem from './Productitem';
 
 const sampleProducts = [
@@ -29,6 +33,9 @@ const sampleProducts = [
 
 export default async function ProductPage({ params }) {
   const productId = (await params).id;
+  const products = await getProductsInsecure();
+  const singleProduct = await getProductInsecure(Number(productId));
+  console.log(products);
   console.log(productId);
-  return <ProductItem sampleProducts={sampleProducts} productId={productId} />;
+  return <ProductItem sampleProducts={products} productId={productId} />;
 }

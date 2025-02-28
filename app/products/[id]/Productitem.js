@@ -13,10 +13,12 @@ export default function ProductItem(props) {
 
   useEffect(() => {
     if (!props.productId) return;
-
+    console.log('props.productId', props.productId);
+    console.log('props.sampleProducts', props.sampleProducts);
     const foundProduct = props.sampleProducts.find(
-      (p) => p.id === props.productId,
+      (p) => p.id === Number(props.productId),
     );
+    console.log('Found products', foundProduct);
     setProduct(foundProduct);
   }, [props.productId, props.sampleProducts]);
 
