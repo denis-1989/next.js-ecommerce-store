@@ -9,6 +9,7 @@ import { addOrUpdateCartItem } from './action';
 export default function ProductItem(props) {
   const router = useRouter();
   const [product, setProduct] = useState();
+  const [productLoaded, setProductLoaded] = useState(false);
   const [quantity, setQuantity] = useState(1);
 
   useEffect(() => {
@@ -20,6 +21,9 @@ export default function ProductItem(props) {
     );
     console.log('Found products', foundProduct);
     setProduct(foundProduct);
+    if (foundProduct) {
+      setProductLoaded(true);
+    }
   }, [props.productId, props.sampleProducts]);
 
   // const handleAddToCart = () => {
@@ -38,7 +42,7 @@ export default function ProductItem(props) {
   //   alert(`${product.name} added to cart!`);
   //   router.push('/cart');
   // };
-  if (!product) {
+  if (!productLoaded) {
     return <div>Loading...</div>;
   }
 
