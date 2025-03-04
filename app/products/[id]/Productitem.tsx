@@ -6,43 +6,47 @@ import { useEffect, useState } from 'react';
 import styles from '../../styles/products.module.css';
 import { addOrUpdateCartItem } from './action';
 
-export default function ProductItem(props) {
-  const router = useRouter();
-  const [product, setProduct] = useState();
-  const [productLoaded, setProductLoaded] = useState(false);
-  const [quantity, setQuantity] = useState(1);
+// Define the type for a product
+type Product = {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+};
 
+// Define the props type for the component
+type ProductItemProps = {
+  productId: string;
+  sampleProducts: Product[];
+};
+
+export default function ProductItem({
+  productId,
+  sampleProducts,
+}: ProductItemProps) {
+  const router = useRouter();
+  const [product, setProduct] = useState<Product | null>(null);
+  const [productLoaded, setProductLoaded] = useState(false);
+  const [quantity, setQuantity] = useState<number>(1);
+
+  // Fetch product details based on productId
   useEffect(() => {
-    if (!props.productId) return;
-    console.log('props.productId', props.productId);
-    console.log('props.sampleProducts', props.sampleProducts);
-    const foundProduct = props.sampleProducts.find(
-      (p) => p.id === Number(props.productId),
-    );
-    console.log('Found products', foundProduct);
-    setProduct(foundProduct);
+    if (!productId) return;
+    console.log('props.productId', productId);
+    console.log('props.sampleProducts', sampleProducts);
+
+    // Find the product in the sampleProducts array
+    const foundProduct = sampleProducts.find((p) => p.id === Number(productId));
+    console.log('Found product', foundProduct);
+
+    setProduct(foundProduct || null);
     if (foundProduct) {
       setProductLoaded(true);
     }
-  }, [props.productId, props.sampleProducts]);
+  }, [productId, sampleProducts]);
 
-  // const handleAddToCart = () => {
-  //   if (!product) {
-  //     console.error('Product is null in handleAddToCart');
-  //     return;
-  //   }
-  //   const cart = JSON.parse(localStorage.getItem('cart')) || [];
-  //   const existingProduct = cart.find((item) => item.id === product.id);
-  //   if (existingProduct) {
-  //     existingProduct.quantity += 1;
-  //   } else {
-  //     cart.push({ ...product, quantity: 1 });
-  //   }
-  //   localStorage.setItem('cart', JSON.stringify(cart));
-  //   alert(`${product.name} added to cart!`);
-  //   router.push('/cart');
-  // };
-  if (!productLoaded) {
+  // Show loading message until product is found
+  if (!productLoaded || !product) {
     return <div>Loading...</div>;
   }
 
@@ -74,7 +78,7 @@ export default function ProductItem(props) {
 
         <button
           onClick={async () => {
-            await addOrUpdateCartItem(props.productId, quantity);
+            await addOrUpdateCartItem(Number(productId), quantity);
             alert(`${product.name} added to cart!`);
             router.push('/cart');
           }}

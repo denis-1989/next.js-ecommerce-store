@@ -1,8 +1,13 @@
 import './global.css';
 import Link from 'next/link';
+import type { ReactNode } from 'react';
 import styles from './styles/layout.module.css';
 
-export default function RootLayout({ children }) {
+type LayoutProps = {
+  children: ReactNode;
+};
+
+export default function RootLayout({ children }: LayoutProps) {
   return (
     <html lang="en">
       <head>

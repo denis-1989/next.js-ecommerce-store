@@ -28,7 +28,13 @@ import ProductItem from './Productitem';
 //   },
 // ];
 
-export default async function ProductPage({ params }) {
+type ProductPageProps = {
+  params: {
+    id: string;
+  };
+};
+
+export default async function ProductPage({ params }: ProductPageProps) {
   const productId = (await params).id;
   const products = await getProductsInsecure();
   // const singleProduct = await getProductInsecure(Number(productId));
