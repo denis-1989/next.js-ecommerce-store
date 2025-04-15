@@ -58,7 +58,6 @@
   background-color: #333;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .homeTitle {
     font-size: 36px;

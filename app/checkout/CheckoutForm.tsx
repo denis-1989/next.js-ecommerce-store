@@ -5,7 +5,6 @@ import type { ChangeEvent, FormEvent } from 'react';
 import { useState } from 'react';
 import styles from '../styles/checkout.module.css';
 
-// Define the structure for the form data
 type FormDataType = {
   firstName: string;
   lastName: string;
@@ -19,7 +18,6 @@ type FormDataType = {
   securityCode: string;
 };
 
-// Define the structure for form errors
 type FormErrors = {
   [key in keyof FormDataType]?: string;
 };
@@ -27,7 +25,6 @@ type FormErrors = {
 export default function CheckoutPage() {
   const router = useRouter();
 
-  // Step 1: State for Form Data with Type
   const [formData, setFormData] = useState<FormDataType>({
     firstName: '',
     lastName: '',
@@ -43,17 +40,14 @@ export default function CheckoutPage() {
 
   const [errors, setErrors] = useState<FormErrors>({});
 
-  // Step 2: Handle Input Changes with Proper Type
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // Step 3: Handle Form Submission with Proper Type
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Validate form: all fields must be filled
     const newErrors: FormErrors = {};
     for (const key in formData) {
       if (!formData[key as keyof FormDataType].trim()) {
@@ -65,10 +59,8 @@ export default function CheckoutPage() {
       return;
     }
 
-    // Clear the cart in localStorage after successful submission
     localStorage.removeItem('cart');
 
-    // Redirect to Thank You page
     router.push('/thank-you');
   };
 

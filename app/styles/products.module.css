@@ -1,5 +1,3 @@
-/* app/styles/products.module.css */
-
 .productsContainer {
   max-width: 1200px;
   margin: 40px auto;
@@ -14,7 +12,7 @@
   font-size: 42px;
   margin-bottom: 20px;
   text-transform: uppercase;
-  color: var(--gold); /* Gold accent for title */
+  color: var(--gold);
 }
 
 .productList {
@@ -62,40 +60,32 @@
   margin-bottom: 10px;
 }
 
-/* app/styles/products.module.css */
-
-/* Container for the product details */
 .productContainer {
   padding: 20px;
   text-align: center;
   color: var(--foreground);
 }
 
-/* Product title styling */
 .productTitle {
-  font-size: 2.25rem; /* approx 36px */
+  font-size: 2.25rem;
   margin-bottom: 20px;
 }
 
-/* Image styling */
 .productImage {
   border-radius: 8px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   margin-bottom: 20px;
 }
 
-/* Price styling */
 .productPrice {
-  font-size: 1.5rem; /* approx 24px */
+  font-size: 1.5rem;
   margin-bottom: 20px;
 }
 
-/* Container for the quantity input and button */
 .actionContainer {
   margin-top: 20px;
 }
 
-/* Styling for the quantity input */
 .inputField {
   padding: 8px;
   font-size: 16px;
@@ -103,12 +93,11 @@
   width: 80px;
 }
 
-/* Styling for the Add to Cart button */
 .addButton {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-  /* Additional styling like border, background-color can be added here */
+
   border: none;
   border-radius: 4px;
   transition: background-color 0.3s ease;

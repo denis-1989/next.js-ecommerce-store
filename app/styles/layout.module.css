@@ -1,4 +1,3 @@
-/* app/styles/layout.module.css */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -15,7 +14,7 @@
   font-family: var(--font-heading);
   font-size: 28px;
   font-weight: 700;
-  color: var(--gold); /* Use gold for a premium title */
+  color: var(--gold);
   margin: 0;
 }
 
@@ -37,10 +36,9 @@
 
 .navLinks a:hover {
   background-color: var(--accent);
-  color: var(--gold); /* Gold hover for links */
+  color: var(--gold);
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;

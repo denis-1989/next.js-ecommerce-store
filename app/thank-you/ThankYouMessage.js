@@ -18,12 +18,10 @@ export default function ThankYouMessage() {
   const router = useRouter();
 
   useEffect(() => {
-    // Redirect to homepage after 5 seconds
     const timer = setTimeout(() => {
       router.push('/');
     }, 5000);
 
-    // Cleanup the timer on component unmount
     return () => clearTimeout(timer);
   }, [router]);
 

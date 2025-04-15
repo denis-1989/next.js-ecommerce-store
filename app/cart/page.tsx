@@ -1,7 +1,7 @@
 import { cookies } from 'next/headers';
+import { combineCartWithProducts } from '../../util/cart';
 import CartItem from './CartItem';
 
-// Define product type
 interface Product {
   id: number;
   name: string;
@@ -9,7 +9,6 @@ interface Product {
   image: string;
 }
 
-// Sample products
 const sampleProducts: Product[] = [
   {
     id: 1,
@@ -38,11 +37,9 @@ const sampleProducts: Product[] = [
 ];
 
 export default async function CartPage() {
-  // Step 1: Get the cart cookie
   const cartCookie = (await cookies()).get('cart');
   let cartData: { id: number; quantity: number }[] = [];
 
-  // Step 2: Check if cartCookie exists and is valid
   if (cartCookie) {
     try {
       const parsedCart = JSON.parse(cartCookie.value);
@@ -54,24 +51,11 @@ export default async function CartPage() {
     }
   }
 
-  // Step 3: Ensure the cart is EMPTY if no valid cart data exists
   if (cartData.length === 0) {
     console.log('No cart data found, setting cart to empty.');
   }
 
-  // Step 4: Combine cart data with product details
-  const combinedCart = cartData.map((cartItem) => {
-    const productDetails = sampleProducts.find(
-      (product) => product.id === cartItem.id,
-    );
-
-    return {
-      id: cartItem.id,
-      name: productDetails?.name || 'Unknown Product',
-      price: productDetails?.price || 0,
-      quantity: cartItem.quantity,
-    };
-  });
+  const combinedCart = combineCartWithProducts(cartData, sampleProducts);
 
   console.log('Combined Cart (Server Side):', combinedCart);
 

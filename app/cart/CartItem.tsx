@@ -4,7 +4,6 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import styles from '../styles/cart.module.css';
 
-// Define the type for a single cart item
 type CartItemType = {
   id: number;
   name: string;
@@ -12,19 +11,16 @@ type CartItemType = {
   quantity: number;
 };
 
-// Define the props type for the component
 type CartProps = {
   cart: CartItemType[];
 };
 
 export default function CartItem({ cart }: CartProps) {
-  const router = useRouter(); // Initialize Next.js router
+  const router = useRouter();
 
-  // Step 1: Ensure cart items have valid values
   const [updatedCartState, setUpdatedCartState] =
     useState<CartItemType[]>(cart);
 
-  // Step 2: useEffect to Update Cookie
   useEffect(() => {
     document.cookie = `cart=${encodeURIComponent(
       JSON.stringify(
@@ -36,20 +32,17 @@ export default function CartItem({ cart }: CartProps) {
     )}; path=/`;
   }, [updatedCartState]);
 
-  // Step 3: Remove an item from the cart
   const handleRemove = (productId: number) => {
     const newCart = updatedCartState.filter((item) => item.id !== productId);
     setUpdatedCartState(newCart);
   };
 
-  // Step 4: Handle Checkout & Redirect
   const handleCheckout = () => {
     if (updatedCartState.length === 0) {
       alert('Your cart is empty. Add some products first!');
       return;
     }
 
-    // Save cart state before redirecting to checkout
     document.cookie = `cart=${encodeURIComponent(
       JSON.stringify(
         updatedCartState.map((item) => ({
@@ -59,22 +52,20 @@ export default function CartItem({ cart }: CartProps) {
       ),
     )}; path=/`;
 
-    router.push('/checkout'); // Redirect user to checkout page
+    router.push('/checkout');
   };
 
-  // Step 5: Clear Cart After Purchase (on Thank You Page)
   useEffect(() => {
     if (
       typeof window !== 'undefined' &&
       window.location.pathname === '/thank-you'
     ) {
       console.log('User is on Thank You page. Clearing cart...');
-      document.cookie = 'cart=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;'; // Clear the cart cookie immediately
-      setUpdatedCartState([]); // Reset state
+      document.cookie = 'cart=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+      setUpdatedCartState([]);
     }
   }, [router]);
 
-  // Step 6: Calculate the total price safely
   const totalPrice = updatedCartState.reduce((total, item) => {
     return total + item.price * item.quantity;
   }, 0);
@@ -114,7 +105,7 @@ export default function CartItem({ cart }: CartProps) {
           <h2 className={styles.cartTotal} data-test-id="cart-total">
             Total: ${totalPrice.toFixed(2)}
           </h2>
-          {/* Checkout Button Redirects to Checkout Page */}
+
           <button
             className={styles.checkoutButton}
             onClick={handleCheckout}
