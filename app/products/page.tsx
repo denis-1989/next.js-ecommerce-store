@@ -3,6 +3,11 @@ import Link from 'next/link';
 import { getProductsInsecure } from '../../database/products';
 import styles from '../styles/products.module.css';
 
+export const metadata = {
+  title: 'Products - Luxury Watch Store',
+  description: 'Browse our premium selection of luxury timepieces.',
+};
+
 // const products = [
 //   {
 //     id: 1,

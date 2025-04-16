@@ -2,6 +2,11 @@ import { cookies } from 'next/headers';
 import { combineCartWithProducts } from '../../util/cart';
 import CartItem from './CartItem';
 
+export const metadata = {
+  title: 'Cart - Luxury Watch Store',
+  description: 'View and manage the items in your shopping cart.',
+};
+
 interface Product {
   id: number;
   name: string;

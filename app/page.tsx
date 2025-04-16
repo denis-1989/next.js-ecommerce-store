@@ -1,6 +1,11 @@
 import Link from 'next/link';
 import styles from './styles/home.module.css';
 
+export const metadata = {
+  title: 'Luxury Watch Store',
+  description: 'Welcome to the finest luxury watch collection online.',
+};
+
 export default function HomePage() {
   return (
     <div className={styles.homeContainer}>
