@@ -8,7 +8,7 @@
     "dev": "next dev",
     "lint": "next lint",
     "migrate": "ley --require tsx/cjs",
-    "start": "next start"
+    "start": "PORT=8080 HOST=0.0.0.0 next start"
   },
   "dependencies": {
     "@upleveled/ley": "0.9.2",
