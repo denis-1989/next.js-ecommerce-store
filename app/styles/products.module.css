@@ -71,17 +71,6 @@
   margin-bottom: 20px;
 }
 
-.productImage {
-  border-radius: 8px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-  margin-bottom: 20px;
-}
-
-.productPrice {
-  font-size: 1.5rem;
-  margin-bottom: 20px;
-}
-
 .actionContainer {
   margin-top: 20px;
 }

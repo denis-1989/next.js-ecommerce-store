@@ -17,10 +17,10 @@ export type Product = {
 
 export const getProductsInsecure = cache(async () => {
   const products = await sql<Product[]>`
-  SELECT
-     *
-   From
-     products
+    SELECT
+      *
+    FROM
+      products
   `;
 
   return products;
