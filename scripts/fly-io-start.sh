@@ -1,18 +1,15 @@
 #!/usr/bin/env bash
 
+# Exit if any command exits with a non-zero exit code
 set -o errexit
 
-# Initialize the database if it doesn't exist
 if [[ ! -f /postgres-volume/run/postgresql/data/postgresql.conf ]]; then
-  echo "⚙️ Initializing PostgreSQL data directory..."
-  su postgres -c "initdb -D /postgres-volume/run/postgresql/data"
+  echo "❗️ No PostgreSQL database found, run the setup script"
+  sleep infinity
 fi
 
-echo "🚀 Starting PostgreSQL..."
-su postgres -c "pg_ctl start --pgdata=/postgres-volume/run/postgresql/data --wait"
+echo "Setting up PostgreSQL on Fly.io..."
+su postgres -c "pg_ctl start --pgdata=/postgres-volume/run/postgresql/data"
 
-echo "📦 Running migrations..."
 pnpm migrate up
-
-echo "🌐 Starting Next.js server..."
-pnpm start
+./node_modules/.bin/next start
