@@ -9,11 +9,11 @@ const sql = postgres();
 console.log(
   'products',
   await sql`
-    Select
+    SELECT
       *
     FROM
       products
-   `,
+  `,
 );
 
 // This is only for the example, in your code you will want

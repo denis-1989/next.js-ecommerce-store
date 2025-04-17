@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { getProductsInsecure } from '../../database/products';
 import styles from '../styles/products.module.css';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata = {
   title: 'Products - Luxury Watch Store',
   description: 'Browse our premium selection of luxury timepieces.',
