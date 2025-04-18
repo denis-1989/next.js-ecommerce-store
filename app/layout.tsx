@@ -1,7 +1,16 @@
 import './global.css';
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 import styles from './styles/layout.module.css';
+
+export const metadata: Metadata = {
+  title: 'Luxury Watch Store',
+  description: 'Browse the finest selection of luxury timepieces.',
+  icons: {
+    icon: '/favicon-32x32.png',
+  },
+};
 
 type LayoutProps = {
   children: ReactNode;
