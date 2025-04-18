@@ -2,17 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
-
-const styles = {
-  container: {
-    textAlign: 'center',
-    marginTop: '50px',
-  },
-  heading: {
-    fontSize: '24px',
-    fontWeight: 'bold',
-  },
-};
+import styles from '../styles/thankyou.module.css';
 
 export default function ThankYouMessage() {
   const router = useRouter();
@@ -26,9 +16,15 @@ export default function ThankYouMessage() {
   }, [router]);
 
   return (
-    <div style={styles.container}>
-      <h1 style={styles.heading}>Thank You for Your Purchase!</h1>
-      <p>You will be redirected to the homepage shortly.</p>
+    <div className={styles.thankYouContainer}>
+      <h1 className={styles.heading}>Thank You for Your Purchase!</h1>
+      <p className={styles.subtext}>
+        Your order has been placed successfully. You'll be redirected to the
+        homepage shortly.
+      </p>
+      <button onClick={() => router.push('/')} className={styles.homeButton}>
+        Return to Home Now
+      </button>
     </div>
   );
 }

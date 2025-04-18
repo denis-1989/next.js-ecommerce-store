@@ -1,91 +1,103 @@
-/* app/styles/cart.module.css */
-
 .cartContainer {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: var(--background);
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 40px;
+  background-color: rgba(0, 0, 0, 0.75);
   color: var(--foreground);
   border: 1px solid var(--accent);
-  border-radius: 8px;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(255, 215, 0, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.cartPage {
+  min-height: 100vh;
+  background-image: url('/images/ecommerce-image.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 60px 20px;
 }
 
 .cartTitle {
   font-family: var(--font-heading);
-  font-size: 32px;
-  margin-bottom: 20px;
+  font-size: 40px;
+  margin-bottom: 30px;
   color: var(--gold);
   text-align: center;
+  letter-spacing: 1px;
+  text-shadow: 1px 1px 2px black;
 }
 
 .cartItem {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 15px;
+  padding: 20px;
   border-bottom: 1px solid var(--accent);
+  transition: background-color 0.3s;
 }
 
-.cartItem:last-child {
-  border-bottom: none;
+.cartItem:hover {
+  background-color: rgba(255, 215, 0, 0.05);
 }
 
 .cartProductName {
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--foreground);
 }
 
-.cartQuantity {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.cartPrice {
-  font-size: 16px;
-  color: var(--gold);
-  font-weight: bold;
-}
-
+.cartQuantity,
+.cartPrice,
 .cartSubtotal {
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 600;
   color: var(--gold);
 }
 
 .removeButton {
-  background-color: var(--accent);
+  background-color: transparent;
+  border: 1px solid var(--accent);
   color: var(--foreground);
-  padding: 8px 12px;
-  border: none;
+  padding: 6px 12px;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 14px;
+  transition: all 0.3s ease;
 }
 
 .removeButton:hover {
-  background-color: #333;
+  background-color: var(--accent);
+  color: var(--gold);
 }
 
 .cartTotal {
   font-family: var(--font-heading);
-  font-size: 24px;
+  font-size: 28px;
   text-align: right;
-  margin-top: 20px;
+  margin-top: 30px;
   color: var(--gold);
+  text-shadow: 1px 1px 2px black;
 }
 
 .checkoutButton {
-  margin-top: 20px;
-  padding: 12px;
-  font-size: 18px;
+  margin-top: 30px;
+  padding: 14px;
+  font-size: 20px;
+  font-weight: bold;
   background-color: var(--gold);
-  color: var(--background);
+  color: #000;
   border: none;
   cursor: pointer;
   width: 100%;
-  border-radius: 5px;
-  transition: background-color 0.3s;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
 }
 
 .checkoutButton:hover {
-  background-color: #c49f2c;
+  background-color: #d4b93d;
 }

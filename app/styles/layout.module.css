@@ -2,9 +2,10 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px 40px;
-  background-color: var(--background);
-  border-bottom: 1px solid var(--accent);
+  padding: 24px 48px;
+  background-color: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #facc15;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -12,44 +13,49 @@
 
 .navbar h2 {
   font-family: var(--font-heading);
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--gold);
+  font-size: 32px;
+  font-weight: 800;
+  color: #facc15;
   margin: 0;
+  letter-spacing: 1px;
 }
 
 .navLinks {
   display: flex;
-  gap: 20px;
+  gap: 24px;
 }
 
 .navLinks a {
   font-size: 18px;
+  font-weight: 500;
   color: var(--foreground);
   text-decoration: none;
-  transition:
-    background-color 0.3s,
-    color 0.3s;
-  padding: 8px 12px;
-  border-radius: 4px;
+  transition: all 0.3s ease;
+  padding: 10px 14px;
+  border-radius: 6px;
+  position: relative;
 }
 
 .navLinks a:hover {
-  background-color: var(--accent);
-  color: var(--gold);
+  background-color: rgba(250, 204, 21, 0.1);
+  color: #facc15;
+  box-shadow: 0 0 8px rgba(250, 204, 21, 0.3);
 }
 
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
-    padding: 10px 20px;
+    padding: 16px 24px;
   }
 
   .navLinks {
     margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .navLinks a {
     font-size: 16px;
+    padding: 8px 12px;
   }
 }

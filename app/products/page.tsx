@@ -10,33 +10,6 @@ export const metadata = {
   description: 'Browse our premium selection of luxury timepieces.',
 };
 
-// const products = [
-//   {
-//     id: 1,
-//     name: 'Rolex Submariner',
-//     price: 12500,
-//     image: '/images/rolex-submariner.webp',
-//   },
-//   {
-//     id: 2,
-//     name: 'Omega Speedmaster',
-//     price: 8500,
-//     image: '/images/omega-speedmaster.webp',
-//   },
-//   {
-//     id: 3,
-//     name: 'Audemars Piguet Royal Oak',
-//     price: 30000,
-//     image: '/images/audemars-piguet-royal-oak.webp',
-//   },
-//   {
-//     id: 4,
-//     name: 'Patek Philippe Nautilus',
-//     price: 40000,
-//     image: '/images/patek-philippe-nautilus.webp',
-//   },
-// ];
-
 export default async function ProductsPage() {
   const products = await getProductsInsecure();
   return (
@@ -54,8 +27,8 @@ export default async function ProductsPage() {
                 src={product.image}
                 alt={product.name}
                 width={300}
-                height={300}
-                className={styles.productImage}
+                height={220}
+                className={styles.productCardImage}
               />
               <p className={styles.productName}>{product.name}</p>
               <p className={styles.productPrice}>${product.price}</p>

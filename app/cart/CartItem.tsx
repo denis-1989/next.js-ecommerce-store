@@ -71,50 +71,51 @@ export default function CartItem({ cart }: CartProps) {
   }, 0);
 
   return (
-    <div className={styles.cartContainer}>
-      <h1 className={styles.cartTitle}>Your Cart</h1>
-      {updatedCartState.length === 0 ? (
-        <p>Your cart is empty.</p>
-      ) : (
-        <div>
-          {updatedCartState.map((item) => (
-            <div
-              key={`cart-item-${item.id}`}
-              className={styles.cartItem}
-              data-test-id={`cart-product-${item.id}`}
-            >
-              <span className={styles.cartProductName}>{item.name}</span>
-              <span className={styles.cartQuantity}>
-                Quantity: {item.quantity}
-              </span>
-              <span className={styles.cartPrice}>
-                Price: ${item.price.toFixed(2)}
-              </span>
-              <span className={styles.cartSubtotal}>
-                Subtotal: ${(item.price * item.quantity).toFixed(2)}
-              </span>
-              <button
-                onClick={() => handleRemove(item.id)}
-                className={styles.removeButton}
-                data-test-id={`cart-product-remove-${item.id}`}
+    <div className={styles.cartPage}>
+      <div className={styles.cartContainer}>
+        <h1 className={styles.cartTitle}>Your Cart</h1>
+        {updatedCartState.length === 0 ? (
+          <p>Your cart is empty.</p>
+        ) : (
+          <div>
+            {updatedCartState.map((item) => (
+              <div
+                key={`cart-item-${item.id}`}
+                className={styles.cartItem}
+                data-test-id={`cart-product-${item.id}`}
               >
-                Remove
-              </button>
-            </div>
-          ))}
-          <h2 className={styles.cartTotal} data-test-id="cart-total">
-            Total: ${totalPrice.toFixed(2)}
-          </h2>
-
-          <button
-            className={styles.checkoutButton}
-            onClick={handleCheckout}
-            data-test-id="checkout-button"
-          >
-            Proceed to Checkout
-          </button>
-        </div>
-      )}
+                <span className={styles.cartProductName}>{item.name}</span>
+                <span className={styles.cartQuantity}>
+                  Quantity: {item.quantity}
+                </span>
+                <span className={styles.cartPrice}>
+                  Price: ${item.price.toFixed(2)}
+                </span>
+                <span className={styles.cartSubtotal}>
+                  Subtotal: ${(item.price * item.quantity).toFixed(2)}
+                </span>
+                <button
+                  onClick={() => handleRemove(item.id)}
+                  className={styles.removeButton}
+                  data-test-id={`cart-product-remove-${item.id}`}
+                >
+                  Remove
+                </button>
+              </div>
+            ))}
+            <h2 className={styles.cartTotal} data-test-id="cart-total">
+              Total: ${totalPrice.toFixed(2)}
+            </h2>
+            <button
+              className={styles.checkoutButton}
+              onClick={handleCheckout}
+              data-test-id="checkout-button"
+            >
+              Proceed to Checkout
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

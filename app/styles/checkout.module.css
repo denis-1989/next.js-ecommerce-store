@@ -1,27 +1,38 @@
-/* app/styles/checkout.module.css */
-
 .checkoutContainer {
-  max-width: 600px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: var(--background);
-  color: var(--foreground);
-  border: 1px solid var(--accent);
-  border-radius: 8px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  background-image: url('/images/ecommerce-home-page.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 40px;
+}
+
+.checkoutBox {
+  background-color: rgba(0, 0, 0, 0.75);
+  border: 2px solid #facc15;
+  border-radius: 10px;
+  padding: 30px 40px;
+  width: 100%;
+  max-width: 500px;
+  margin-left: 5%;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
 }
 
 .checkoutHeading {
   font-family: var(--font-heading);
   font-size: 32px;
-  margin-bottom: 20px;
-  color: var(--gold);
+  margin-bottom: 24px;
+  color: #facc15;
   text-align: center;
 }
 
 .checkoutForm {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 18px;
 }
 
 .formGroup {
@@ -32,30 +43,31 @@
 .formLabel {
   font-size: 16px;
   font-weight: bold;
+  color: #facc15;
   margin-bottom: 5px;
 }
 
 .formInput {
   padding: 10px;
   font-size: 16px;
-  border: 1px solid var(--accent);
+  border: 1px solid #facc15;
   border-radius: 5px;
   background-color: #1e1e1e;
-  color: var(--foreground);
+  color: white;
 }
 
 .checkoutButton {
-  padding: 12px;
+  padding: 14px;
   font-size: 18px;
-  background-color: var(--gold);
-  color: var(--background);
+  background-color: #facc15;
+  color: #111;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .checkoutButton:hover {
-  background-color: #c49f2c;
+  background-color: #e6b800;
 }

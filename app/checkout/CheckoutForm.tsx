@@ -54,52 +54,57 @@ export default function CheckoutPage() {
         newErrors[key as keyof FormDataType] = 'This field is required';
       }
     }
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
 
     localStorage.removeItem('cart');
-
     router.push('/thank-you');
   };
 
   return (
     <div className={styles.checkoutContainer}>
-      <h1 className={styles.checkoutHeading}>Checkout</h1>
-      <form className={styles.checkoutForm} onSubmit={handleSubmit}>
-        {Object.keys(formData).map((key) => (
-          <div className={styles.formGroup} key={`checkout-field-${key}`}>
-            <label
-              htmlFor={key}
-              className={styles.formLabel}
-              data-test-id={`checkout-${key}`}
-            >
-              {key.charAt(0).toUpperCase() +
-                key.slice(1).replace(/([A-Z])/g, ' $1')}
-              :
-            </label>
-            <input
-              id={key}
-              name={key}
-              type={key === 'email' ? 'email' : 'text'}
-              className={styles.formInput}
-              value={formData[key as keyof FormDataType]}
-              onChange={handleChange}
-              required
-            />
-            {errors[key as keyof FormDataType] && (
-              <p>{errors[key as keyof FormDataType]}</p>
-            )}
-          </div>
-        ))}
-        <button
-          className={styles.checkoutButton}
-          data-test-id="checkout-confirm-order"
-        >
-          Confirm Order
-        </button>
-      </form>
+      <div className={styles.checkoutBox}>
+        <h1 className={styles.checkoutHeading}>Checkout</h1>
+        <form className={styles.checkoutForm} onSubmit={handleSubmit}>
+          {Object.keys(formData).map((key) => (
+            <div className={styles.formGroup} key={`checkout-field-${key}`}>
+              <label
+                htmlFor={key}
+                className={styles.formLabel}
+                data-test-id={`checkout-${key}`}
+              >
+                {key.charAt(0).toUpperCase() +
+                  key.slice(1).replace(/([A-Z])/g, ' $1')}
+                :
+              </label>
+              <input
+                id={key}
+                name={key}
+                type={key === 'email' ? 'email' : 'text'}
+                className={styles.formInput}
+                value={formData[key as keyof FormDataType]}
+                onChange={handleChange}
+                required
+              />
+              {errors[key as keyof FormDataType] && (
+                <p style={{ color: 'red', marginTop: '5px', fontSize: '14px' }}>
+                  {errors[key as keyof FormDataType]}
+                </p>
+              )}
+            </div>
+          ))}
+
+          <button
+            className={styles.checkoutButton}
+            data-test-id="checkout-confirm-order"
+          >
+            Confirm Order
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
