@@ -90,12 +90,6 @@ sudo -u <user name> psql -U <user name> <database name>
 -Playwright
 -Fly.io
 
-## Database Setup
-
-If you don't have PostgreSQL installed yet, follow the instructions from the PostgreSQL step in [UpLeveled's System Setup Instructions](https://github.com/upleveled/system-setup/blob/master/readme.md).
-
-Copy the `.env.example` file to a new file called `.env` (ignored from Git) and fill in the necessary information:
-
 ## tests
 
 ### Jest
