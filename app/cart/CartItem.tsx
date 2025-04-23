@@ -17,7 +17,6 @@ type CartProps = {
 
 export default function CartItem({ cart }: CartProps) {
   const router = useRouter();
-
   const [updatedCartState, setUpdatedCartState] =
     useState<CartItemType[]>(cart);
 
@@ -60,7 +59,6 @@ export default function CartItem({ cart }: CartProps) {
       typeof window !== 'undefined' &&
       window.location.pathname === '/thank-you'
     ) {
-      console.log('User is on Thank You page. Clearing cart...');
       document.cookie = 'cart=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;';
       setUpdatedCartState([]);
     }
@@ -77,35 +75,47 @@ export default function CartItem({ cart }: CartProps) {
         {updatedCartState.length === 0 ? (
           <p>Your cart is empty.</p>
         ) : (
-          <div>
-            {updatedCartState.map((item) => (
-              <div
-                key={`cart-item-${item.id}`}
-                className={styles.cartItem}
-                data-test-id={`cart-product-${item.id}`}
-              >
-                <span className={styles.cartProductName}>{item.name}</span>
-                <span className={styles.cartQuantity}>
-                  Quantity: {item.quantity}
-                </span>
-                <span className={styles.cartPrice}>
-                  Price: ${item.price.toFixed(2)}
-                </span>
-                <span className={styles.cartSubtotal}>
-                  Subtotal: ${(item.price * item.quantity).toFixed(2)}
-                </span>
-                <button
-                  onClick={() => handleRemove(item.id)}
-                  className={styles.removeButton}
-                  data-test-id={`cart-product-remove-${item.id}`}
-                >
-                  Remove
-                </button>
-              </div>
-            ))}
+          <>
+            <div className={styles.cartTableWrapper}>
+              <table className={styles.cartTable}>
+                <thead>
+                  <tr>
+                    <th>Product</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Subtotal</th>
+                    <th>Remove</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {updatedCartState.map((item) => (
+                    <tr
+                      key={`cart-item-${item.id}`}
+                      data-test-id={`cart-product-${item.id}`}
+                    >
+                      <td>{item.name}</td>
+                      <td>{item.quantity}</td>
+                      <td>${item.price.toFixed(2)}</td>
+                      <td>${(item.price * item.quantity).toFixed(2)}</td>
+                      <td>
+                        <button
+                          onClick={() => handleRemove(item.id)}
+                          className={styles.removeButton}
+                          data-test-id={`cart-product-remove-${item.id}`}
+                        >
+                          Remove
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
             <h2 className={styles.cartTotal} data-test-id="cart-total">
               Total: ${totalPrice.toFixed(2)}
             </h2>
+
             <button
               className={styles.checkoutButton}
               onClick={handleCheckout}
@@ -113,7 +123,7 @@ export default function CartItem({ cart }: CartProps) {
             >
               Proceed to Checkout
             </button>
-          </div>
+          </>
         )}
       </div>
     </div>
