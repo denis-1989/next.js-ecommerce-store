@@ -83,12 +83,12 @@ sudo -u <user name> psql -U <user name> <database name>
 
 ## Technologies
 
--Next.js
--PostgresSQL
--SCSS/CSS Modules
--Jest
--Playwright
--Fly.io
+- Next.js
+- PostgresSQL
+- SCSS/CSS Modules
+- Jest
+- Playwright
+- Fly.io
 
 ## tests
 
