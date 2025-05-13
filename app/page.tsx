@@ -1,4 +1,3 @@
-// app/page.js ose page.tsx
 import Link from 'next/link';
 import styles from './styles/home.module.css';
 
